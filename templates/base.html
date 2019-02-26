@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="author" content="https://github.com/supermasita/geoip.supermasita.com">
+      <title>geoip.supermasita.com</title>
+</head>
+    <body style="margin:10px;">
+        {% block content %}{% endblock %}
+	<hr>
+	<font style='font-size:75%;'>
+	<h2>Usage</h2>
+	<ul>
+		<li>See information of your IP: <a href="https://geoip.supermasita.com/">https://geoip.supermasita.com/</a></li>
+		<li>See information of IP 63.245.208.212: <a href="https://geoip.supermasita.com/63.245.208.212">https://geoip.supermasita.com/63.245.208.212</a></li>
+		<li>Get JSON with information of your IP: <a href="https://geoip.supermasita.com/api/v1.0/ip/">https://geoip.supermasita.com/api/v1.0/ip/</a></li>
+		<li>Get JSON with information of IP 63.245.208.212: <a href="https://geoip.supermasita.com/api/v1.0/ip/63.245.208.212">https://geoip.supermasita.com/api/v1.0/ip/63.245.208.212</a></li>
+	</ul>
+	<h2>Credits</h2>
+	<ul>
+		<li><a href="https://github.com/supermasita/geoip.supermasita.com">Github project</a></li>
+		<li>We use GeoLite2 data created by <a href="http://www.maxmind.com" target="_blank">MaxMind</a> (updated {{ results['geoip_DB_MTime'] }}).</li>
+	</ul>
+	</font>
+    </body>
+</html>
