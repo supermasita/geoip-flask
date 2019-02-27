@@ -13,5 +13,6 @@ install:
 script:
   - ls -lh
   - python3 app.py &
+  - sleep 10
   - netstat -nat | grep LISTEN
   - python3 test_app.py
