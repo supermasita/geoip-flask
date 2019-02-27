@@ -12,7 +12,7 @@ install:
 # command to run tests
 script:
   - ls -lh
-  - python3 app.py &
-  - sleep 10
+  - uwsgi --master --http 0.0.0.0:8888 --module app:app --processes 4 &
+  - sleep 3
   - netstat -nat | grep LISTEN
   - python3 test_app.py

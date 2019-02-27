@@ -2,7 +2,7 @@
 
 FROM ubuntu:18.04
 
-ENV UPDATED "2019-02-26"
+ENV UPDATED "2019-02-27"
 
 RUN apt-get update && apt-get install -y gnupg
 
@@ -28,6 +28,6 @@ COPY geoipupdate.cron /etc/cron.d/geoipupdate
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 
-EXPOSE 8888
+EXPOSE 8888 9191
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
