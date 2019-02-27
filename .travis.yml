@@ -11,5 +11,5 @@ install:
   - curl http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz -o GeoLite2-City.tar.gz && tar xf GeoLite2-City.tar.gz && mv GeoLite2-City_2* GeoLite2-City 
 # command to run tests
 script:
-  - python3 app.py & 
+  - python3 app.py > app.log 2>&1 & 
   - python3 test_app.py
