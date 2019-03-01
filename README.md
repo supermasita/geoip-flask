@@ -1,6 +1,7 @@
 # Python Flask GeoLite2 City service
+![](https://api.travis-ci.org/supermasita/geoip-flask.svg?branch=master)
 
-## Usage
+## Demo/Usage
 * See information of your IP: <https://geoip.supermasita.com/>
 * See information of IP 63.245.208.212: <https://geoip.supermasita.com/63.245.208.212>
 * Get JSON with information of your IP: <https://geoip.supermasita.com/api/v1.0/ip/>
