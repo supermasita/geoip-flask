@@ -8,7 +8,7 @@
 <ul>
 	<li>IP: <b>{{ results['traits']['ip_address'] }}</b> {% if results['own_ip'] == True %}<i>(this is your own IP)</i>{% endif %}</li>
 	{% if results['registered_country'] %}
-	   <li>Country: {{ results['registered_country']['names']['en'] }} ({{ results['registered_country']['iso_code'] }})</li>
+	<li>Country: {{ results['registered_country']['names']['en'] }} (<a href="https://www.geonames.org/countries/{{ results['registered_country']['iso_code'] }}/" target="_blank">{{ results['registered_country']['iso_code'] }}</a>)</li>
 	{% endif %}
 	{% if results['country'] %}
 	   <li>City: {% if results['city'] %}{{ results['city']['names']['en'] }}{% else %}N/A{% endif %}</li>
