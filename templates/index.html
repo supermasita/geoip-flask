@@ -2,9 +2,14 @@
 {% block content %}
 
 {% if results['traits'] %}
+{% if not results['registered_country'] or not results['country'] %}
+<i><font style='font-size:75%; background-color:#000; color:#fff;'>Ouch! This IP has very limited (or none) information in database</font></i>
+{% endif %}
 <ul>
 	<li>IP: <b>{{ results['traits']['ip_address'] }}</b> {% if results['own_ip'] == True %}<i>(this is your own IP)</i>{% endif %}</li>
-	<li>Country: {{ results['registered_country']['names']['en'] }} ({{ results['registered_country']['iso_code'] }})</li>
+	{% if results['registered_country'] %}
+	   <li>Country: {{ results['registered_country']['names']['en'] }} ({{ results['registered_country']['iso_code'] }})</li>
+	{% endif %}
 	{% if results['country'] %}
 	   <li>City: {% if results['city'] %}{{ results['city']['names']['en'] }}{% else %}N/A{% endif %}</li>
 	   <li>Continent: {{ results['continent']['names']['en'] }}</li>
@@ -12,8 +17,6 @@
 	   <li>Longitude: {{ results['location']['longitude'] }}</li>
 	   <li>Time zone: {{ results['location']['time_zone'] }}</li>
 	   <li><a href="https://www.openstreetmap.org/?mlat={{ results['location']['latitude'] }}&amp;mlon={{ results['location']['longitude'] }}#map={{ results['location']['latitude'] }}/{{ results['location']['longitude'] }}" target="_blank">See in map</a></li>
-	{% else %}
-           <li><i>Note: this IP has very limited information in database</i></li>
 	{% endif %}
 </ul>
 {% else %}

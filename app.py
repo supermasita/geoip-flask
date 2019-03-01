@@ -1,15 +1,15 @@
 #!flask/bin/python
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request 
+from config import *
 
 import geoip2.database
 import os.path
 import time
 
-# from datetime import datetime, timedelta
 
 # DB location
 geoipDbPath = os.path.join(os.path.dirname(
-    __file__), 'GeoLite2-City/GeoLite2-City.mmdb')
+    __file__), geo_db_location)
 
 
 app = Flask(__name__)
@@ -42,6 +42,7 @@ def index(ip=None, own_ip=False):
     return render_template("index.html", results=results)
 
 
+
 @app.route('/api/v1.0/ip/', methods=['GET'])
 def get_ip_own():
     if request.headers.get('X-Real-IP'):
@@ -64,4 +65,4 @@ def get_ip(ip):
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=8888)
+    app.run(debug=app_debug, host=app_host, port=app_port)

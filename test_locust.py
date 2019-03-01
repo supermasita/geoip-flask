@@ -7,22 +7,30 @@ from faker import Faker
 ok_status_codes = [200, 400]
 
 class WebsiteTasks(TaskSet):
-
+    
     @task(10)
     def ipv4_json(self):
         fake = Faker()
-        with self.client.get('/api/v1.0/ip/%s' % (fake.ipv4()),
-                             catch_response=True) as response:
-            if response.status_code in ok_status_codes :
-                response.success()
+        fipv4 = fake.ipv4()
+        iters = 0
+        while iters <= 20 :
+            with self.client.get('/api/v1.0/ip/%s' % (fipv4),
+                                 catch_response=True) as response:
+                if response.status_code in ok_status_codes :
+                    response.success()
+                iters += 1
 
     @task(10)
     def ipv4(self):
         fake = Faker()
-        with self.client.get('/%s' % (fake.ipv4()),
-                             catch_response=True) as response:
-            if response.status_code in ok_status_codes :
-                response.success()
+        fipv4 = fake.ipv4()
+        iters = 0
+        while iters <= 20 :
+            with self.client.get('/%s' % (fipv4),
+                                 catch_response=True) as response:
+                if response.status_code in ok_status_codes :
+                    response.success()
+                iters += 1
 
     @task(2)
     def ipv6(self):
@@ -43,5 +51,5 @@ class WebsiteTasks(TaskSet):
 
 class WebsiteUser(HttpLocust):
     task_set = WebsiteTasks
-    min_wait = 1
-    max_wait = 10
+    # min_wait = 1
+    # max_wait = 10
