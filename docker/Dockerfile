@@ -1,4 +1,4 @@
-#docker run -d --network="web" -v /opt/docker-mounts/opt/geoip.supermasita.com:/opt/geoip.supermasita.com -p 8888:8888  --name="geoip" -t geoip
+# docker run -d --network="web" -p 8888:8888  --name="geoip" -t geoip
 
 FROM ubuntu:18.04
 
