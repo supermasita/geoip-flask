@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, jsonify, render_template, request 
+from flask import Flask, jsonify, render_template, request
 from config import *
 
 import geoip2.database
@@ -39,8 +39,8 @@ def index(ip=None, own_ip=False):
     results = results.json
     results['ip'] = ip
     results['own_ip'] = own_ip
-    return render_template("index.html", results=results)
-
+    return render_template("index.html", results=results,
+                           app_title=app_title, app_domain=app_domain)
 
 
 @app.route('/api/v1.0/ip/', methods=['GET'])
