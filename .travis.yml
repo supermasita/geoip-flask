@@ -3,14 +3,13 @@ language: python
 cache:
   - pip
 python:
-  - "3.4"
-  - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  - curl http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz -o GeoLite2-City.tar.gz && tar xf GeoLite2-City.tar.gz && mv GeoLite2-City_2* GeoLite2-City 
+  - curl curl "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=$LICENSE_KEY&suffix=tar.gz" -o GeoLite2-City.tar.gz && tar xf GeoLite2-City.tar.gz && mv GeoLite2-City_2* GeoLite2-City 
 # command to run tests
 script:
   - ls -lh
