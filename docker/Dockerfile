@@ -1,17 +1,16 @@
-# docker run -d --network="web" -p 8888:8888  --name="geoip" -t geoip
+# Run example:
+#  docker run -d --network="web" -p 8888:8888  --name="geoip" -t geoip
+# Build with:
+#  --build-arg LICENSE_KEY={your maxmind key}
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-ENV UPDATED "2019-02-27"
+ENV UPDATED "2020-05-06"
 
-RUN apt-get update && apt-get install -y gnupg
-
-RUN echo "deb http://ppa.launchpad.net/maxmind/ppa/ubuntu bionic main" >> /etc/apt/source.list
-
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F44B38CE3DB1BF64B61DBD28DE1997DCDE742AFA 
+ARG LICENSE_KEY
 
 RUN apt-get update \
-    && apt-get install -y git python3-pip curl unzip cron geoipupdate supervisor 
+    && apt-get install -y git python3-pip curl unzip supervisor 
 
 RUN cd /opt/ \
     && curl https://codeload.github.com/supermasita/geoip-flask/zip/master -o master.zip \
@@ -19,12 +18,17 @@ RUN cd /opt/ \
     && mv geoip-flask-master geoip-flask \
     && rm -f master.zip
 
-RUN cd /opt/geoip-flask && pip3 install -r requirements.txt
+RUN cd /opt/geoip-flask \
+    && pip3 install -r requirements.txt
 
-RUN mkdir /opt/geoip-flask/GeoLite2-City/ \ 
-    && /usr/bin/geoipupdate -d /opt/geoip-flask/GeoLite2-City/
+RUN mkdir /opt/geoip-flask/GeoLite2-City/
 
-COPY geoipupdate.cron /etc/cron.d/geoipupdate
+RUN curl "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${LICENSE_KEY}&suffix=tar.gz" \ 
+    -o /opt/geoip-flask/GeoLite2-City/GeoLite2-City.tar.gz 
+
+RUN cd /opt/geoip-flask/GeoLite2-City \ 
+    && tar xvf /opt/geoip-flask/GeoLite2-City/GeoLite2-City.tar.gz --strip 1 \ 
+    && rm -f /opt/geoip-flask/GeoLite2-City/GeoLite2-City.tar.gz 
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 

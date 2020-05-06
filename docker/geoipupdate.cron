@@ -1,9 +1,0 @@
-# Regular cron job for the geoipupdate package, used to update GeoIP databases
-#
-# According to MaxMind: "The GeoIP2 and GeoIP Legacy Country and City databases
-# are updated every Tuesday. The GeoIP2 ISP, GeoIP Legacy ISP and Organization
-# databases are updated every one to two weeks. All other databases are updated
-# on the first Tuesday of each month."
-
-# m h dom mon dow user  command
-0 6    * * *   root    test -x /usr/bin/geoipupdate && /usr/bin/geoipupdate -d /opt/geoip-flask/GeoLite2-City/
