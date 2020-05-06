@@ -1,0 +1,1 @@
+docker build --build-arg LICENSE_KEY=$LICENSE_KEY .
