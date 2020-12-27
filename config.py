@@ -1,13 +1,15 @@
+import os 
+
 # Location of the MMDB
-geo_db_location = "GeoLite2-City/GeoLite2-City.mmdb"
+geo_db_location = os.getenv("GEOIP_DB_LOCATION", "GeoLite2-City/GeoLite2-City.mmdb")
 # IP where the app listens - 0.0.0.0 for all
-app_host = "0.0.0.0"
+app_host = os.getenv("GEOIP_APP_HOST", "0.0.0.0")
 # Port where the app listens
-app_port = 8888
+app_port = os.getenv("GEOIP_APP_PORT", "8888")
 # Flask debug flag
-app_debug = False
+app_debug = os.getenv("GEOIP_APP_DEBUG", False)
 
 # Domain used in template anchors
-app_domain = "geoip.supermasita.com"
+app_domain = os.getenv("GEOIP_APP_DOMAIN", "geoip.supermasita.com")
 # HTML title for template
-app_title = "geoip.supermasita.com - A service for MaxMind's GeoIP DB using Flask"
+app_title = os.getenv("GEOIP_APP_TITLE", "A service for MaxMind's GeoIP DB using Flask")
