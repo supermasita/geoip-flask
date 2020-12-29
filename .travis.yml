@@ -16,4 +16,4 @@ script:
   - python3 app.py &
   - sleep 3
   - netstat -nat | grep LISTEN
-  - python3 test_app.py
+  - python3 test/test_app.py
