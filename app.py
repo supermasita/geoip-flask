@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify, render_template, request
-from config import geo_db_location, app_host, app_port, app_debug, app_domain, app_title, app_proxy_ip_header
+from config import geo_db_location, app_host, app_port, app_debug, app_endpoint, app_title, app_proxy_ip_header
 
 
 import geoip2.database
@@ -35,10 +35,9 @@ def _get_ip(ip=None):
                  - "EXCEPTION", for any other exception
                 
     """
-    response = {'own_ip': False}
+    response = {}
     if ip is None:
         ip = _get_requester_ip()
-        response['own_ip'] = True
     response['ip'] = ip
     response['geoip_db_mtime'] = geoip_db_mtime 
     try:
@@ -63,12 +62,12 @@ def _get_ip(ip=None):
 
 @app.route('/', methods=['GET'])
 @app.route('/<string:ip>', methods=['GET'])
-def html_response(ip=None, own_ip=False):
+def html_response(ip=None):
     """Get data for IP and render HTML template
     """
     results = _get_ip(ip)
     return render_template("index.html", results=results,
-                           app_title=app_title, app_domain=app_domain)
+                           app_title=app_title, app_endpoint=app_endpoint)
 
 
 @app.route('/api/v1.0/ip/', methods=['GET'])

@@ -9,19 +9,16 @@
     <body style="margin:10px;">
         {% block content %}{% endblock %}
 	<hr>
-	<font style='font-size:75%;'>
-	<h5>Usage</h5>
+	<font style='font-size:70%;'>
+	<h5>How to use</h5>
 	<ul>
-		<li>See information of your IP: <a href="https://{{ app_domain }}/">https://{{ app_domain }}/</a></li>
-		<li>See information of IP 63.245.208.212: <a href="https://{{ app_domain }}/63.245.208.212">https://{{ app_domain }}/63.245.208.212</a></li>
-		<li>Get JSON with information of your IP: <a href="https://{{ app_domain }}/api/v1.0/ip/">https://{{ app_domain }}/api/v1.0/ip/</a></li>
-		<li>Get JSON with information of IP 63.245.208.212: <a href="https://{{ app_domain }}/api/v1.0/ip/63.245.208.212">https://{{ app_domain }}/api/v1.0/ip/63.245.208.212</a></li>
+		<li>See information of your IP: <a href="{{ app_endpoint }}/">{{ app_endpoint }}/</a></li>
+		<li>See information of IP 63.245.208.212: <a href="{{ app_endpoint }}/63.245.208.212">{{ app_endpoint }}/63.245.208.212</a></li>
+		<li>Get JSON with information of your IP: <a href="{{ app_endpoint }}/api/v1.0/ip/">{{ app_endpoint }}/api/v1.0/ip/</a></li>
+		<li>Get JSON with information of IP 63.245.208.212: <a href="{{ app_endpoint }}/api/v1.0/ip/63.245.208.212">{{ app_endpoint }}/api/v1.0/ip/63.245.208.212</a></li>
 	</ul>
-	<h5>Credits</h5>
-	<ul>
-		<li><a href="https://github.com/supermasita/geoip-flask">Github project</a></li>
-		<li>We use GeoLite2 data created by <a href="http://www.maxmind.com" target="_blank">MaxMind</a> (updated {{ results['geoip_DB_MTime'] }}).</li>
-	</ul>
+	<hr>
+	<p align="right"><code><a href="https://github.com/supermasita/geoip-flask">Github project</a> | We use GeoLite2 data created by <a href="http://www.maxmind.com" target="_blank">MaxMind</a> (<i>updated {{ results['geoip_db_mtime'] }}</i>)</code></p>
 	</font>
     </body>
 </html>

@@ -1,26 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-
-{% if results['traits'] %}
-{% if not results['registered_country'] or not results['country'] %}
-<i><font style='font-size:75%; background-color:#000; color:#fff;'>Ouch! This IP has very limited (or none) information in database</font></i>
-{% endif %}
-<ul>
-	<li>IP: <b>{{ results['traits']['ip_address'] }}</b> {% if results['own_ip'] == True %}<i>(this is your own IP)</i>{% endif %}</li>
-	{% if results['registered_country'] %}
-	<li>Country: {{ results['registered_country']['names']['en'] }} (<a href="https://www.geonames.org/countries/{{ results['registered_country']['iso_code'] }}/" target="_blank">{{ results['registered_country']['iso_code'] }}</a>)</li>
-	{% endif %}
-	{% if results['country'] %}
-	   <li>City: {% if results['city'] %}{{ results['city']['names']['en'] }}{% else %}N/A{% endif %}</li>
-	   <li>Continent: {{ results['continent']['names']['en'] }}</li>
-	   <li>Latitude: {{ results['location']['latitude'] }}</li>
-	   <li>Longitude: {{ results['location']['longitude'] }}</li>
-	   <li>Time zone: {{ results['location']['time_zone'] }}</li>
-	   <li><a href="https://www.openstreetmap.org/?mlat={{ results['location']['latitude'] }}&amp;mlon={{ results['location']['longitude'] }}#map={{ results['location']['latitude'] }}/{{ results['location']['longitude'] }}" target="_blank">See in map</a></li>
-	{% endif %}
-</ul>
-{% else %}
-{{ results['ip'] }} is not a valid public IP.
-{% endif %}
-
+   {%- if results['traits'] %}
+       {%- if not results['registered_country'] or not results['country'] %}
+          <div class="alert alert-warning">
+              <i><font style='font-size:75%; background-color:#000; color:#fff;'>Ouch! This IP has very limited (or no) information in database</font></i>
+          </div>
+       {%- endif %}
+       <div class="alert alert-success">
+           <ul>
+           	<li>IP: <b>{{ results['traits']['ip_address'] }}</b></li>
+           	{%- if results['registered_country'] %}
+           	<li>Country: {{ results['registered_country']['names']['en'] }} (<a href="https://www.geonames.org/countries/{{ results['registered_country']['iso_code'] }}/" target="_blank">{{ results['registered_country']['iso_code'] }}</a>)</li>
+           	{%- endif %}
+           	{%- if results['country'] %}
+           	   <li>City: {% if results['city'] %}{{ results['city']['names']['en'] }}{% else %}N/A{% endif %}</li>
+           	   <li>Continent: {{ results['continent']['names']['en'] }}</li>
+           	   <li>Latitude: {{ results['location']['latitude'] }}</li>
+           	   <li>Longitude: {{ results['location']['longitude'] }}</li>
+           	   <li>Time zone: {{ results['location']['time_zone'] }}</li>
+           	   <li><a href="https://www.openstreetmap.org/?mlat={{ results['location']['latitude'] }}&amp;mlon={{ results['location']['longitude'] }}#map={{ results['location']['latitude'] }}/{{ results['location']['longitude'] }}" target="_blank">See in map</a></li>
+           	{%- endif %}
+           </ul>
+       </div>
+   {%- else %}
+       <div class="alert alert-danger">
+           <b>{{ results['ip'] }}</b> is not a valid public IP. Is it an internal IP? Do you have a typo?
+       </div>
+   {%- endif %}
 {% endblock %}

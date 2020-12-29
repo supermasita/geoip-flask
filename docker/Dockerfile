@@ -1,11 +1,11 @@
 # Run example:
-#  sudo docker run -d --env GEOIP_APP_DOMAIN=example.com -p 8888:8888  -t supermasita/geoip-flask
+#  sudo docker run -d --env GEOIP_APP_ENDPOINT=http://example.com:8888 -p 8888:8888  -t supermasita/geoip-flask
 # Build with:
 #  --build-arg LICENSE_KEY={your maxmind key}
 
 FROM ubuntu:20.04
 
-ENV UPDATED "2020-12-27"
+ENV UPDATED "2020-12-29"
 
 ARG LICENSE_KEY
 
