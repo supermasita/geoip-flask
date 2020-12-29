@@ -12,7 +12,7 @@ $ python3 app.py
 #### Using UWSGI (example)
 
 ```
-$ uwsgi --master --http 0.0.0.0:8888 --chdir /opt/geoip-flask/ --module app:app --processes 4
+$ uwsgi --master --http 0.0.0.0:8888 --module app:app --processes 4
 ```
 
 #### Using the [Docker image](https://hub.docker.com/r/supermasita/geoip-flask)

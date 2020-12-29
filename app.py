@@ -9,7 +9,9 @@ import time
 
 
 app = Flask(__name__)
-
+geoip_db_path = os.path.join(os.path.dirname(__file__), geo_db_location)
+geoip_db_mtime = time.ctime(os.path.getmtime(geoip_db_path))
+ 
 
 def _get_requester_ip():
     """Figure out the ip from the request. use `remote_addr` unless a specific header is found
@@ -41,7 +43,8 @@ def _get_ip(ip=None):
     response['ip'] = ip
     response['geoip_db_mtime'] = geoip_db_mtime 
     try:
-        ip_response = dbReader.city(ip)
+        with geoip2.database.Reader(geoip_db_path) as db_reader:
+            ip_response = db_reader.city(ip)  # Todo: should we find a way to reuse the object?
         response.update(ip_response.raw)
         response['result'] = "SUCCESS"
         response['result_message'] = None
@@ -79,12 +82,5 @@ def json_response(ip=None):
 
 
 if __name__ == '__main__':
-    try:
-        geoipDbPath = os.path.join(os.path.dirname(__file__), geo_db_location)
-        dbReader = geoip2.database.Reader(geoipDbPath)
-        geoip_db_mtime = time.ctime(os.path.getmtime(geoipDbPath))
-        app.run(debug=app_debug, host=app_host, port=app_port)
-    except Exception as e:
-        raise e
-    finally:    
-        dbReader.close()
+    app.run(debug=app_debug, host=app_host, port=app_port)
+
