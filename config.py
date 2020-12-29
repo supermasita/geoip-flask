@@ -13,3 +13,7 @@ app_debug = os.getenv("GEOIP_APP_DEBUG", False)
 app_domain = os.getenv("GEOIP_APP_DOMAIN", "geoip.supermasita.com")
 # HTML title for template
 app_title = os.getenv("GEOIP_APP_TITLE", "A service for MaxMind's GeoIP DB using Flask")
+
+# If behind a proxy, header to look for instead of REMOTE ADDRESS 
+app_proxy_ip_header = os.getenv("GEOIP_APP_PROXY_IP_HEADER", "X-Real-IP")
+
