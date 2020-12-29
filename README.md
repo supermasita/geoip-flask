@@ -19,7 +19,7 @@ $ uwsgi --master --http 0.0.0.0:8888 --chdir /opt/geoip-flask/ --module app:app 
 
 ```
 $ docker pull supermasita/geoip-flask
-$ docker run -d --env GEOIP_APP_DOMAIN=example.com -p 8888:8888  -t supermasita/geoip-flask
+$ docker run -d --env GEOIP_APP_ENDPOINT=http://example.com:8888 -p 8888:8888  -t supermasita/geoip-flask
 ```
 
 Note that the Docker image runs uWSGI in the following way:
@@ -45,11 +45,11 @@ The following OS variables can be set to override `config.py`:
 * `GEOIP_APP_HOST` ("0.0.0.0")
 * `GEOIP_APP_PORT` ("8888")
 * `GEOIP_APP_DEBUG` (False)
-* `GEOIP_APP_DOMAIN` ("geoip.supermasita.com")
+* `GEOIP_APP_ENDPOINT` ("http://geoip.supermasita.com:8888")
 * `GEOIP_APP_TITLE` ("A service for MaxMind's GeoIP DB using Flask")
 * `GEOIP_APP_PROXY_IP_HEADER` ("X-Real-IP")
 
-If you are running a Docker image, you can use `docker run -e GEOIP_APP_DOMAIN=example.com ...`.
+If you are running a Docker image, you can use `docker run -e GEOIP_APP_ENDPOINT=http://example.com ...`.
 
 ## Getting updated Maxmind DB
 Due to changes in how Maxmind allows to download updated versions of their DBs, ATM there is no built in process to periodically update it. To do so you can rebuild the image passing `--build-arg LICENSE_KEY={your maxmind key}` or download an updated Docker image from [Dockerhub](https://hub.docker.com/r/supermasita/geoip-flask).

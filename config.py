@@ -9,8 +9,8 @@ app_port = os.getenv("GEOIP_APP_PORT", "8888")
 # Flask debug flag
 app_debug = os.getenv("GEOIP_APP_DEBUG", False)
 
-# Domain used in template anchors
-app_domain = os.getenv("GEOIP_APP_DOMAIN", "geoip.supermasita.com")
+# Domain used in template anchors - Must include scheme (http/https)
+app_endpoint = os.getenv("GEOIP_APP_ENDPOINT", "http://geoip.supermasita.com:8888")
 # HTML title for template
 app_title = os.getenv("GEOIP_APP_TITLE", "A service for MaxMind's GeoIP DB using Flask")
 
