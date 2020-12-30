@@ -5,12 +5,12 @@
 
 FROM ubuntu:20.04
 
-ENV UPDATED "2020-12-29"
+ENV UPDATED "2020-12-30"
 
 ARG LICENSE_KEY
 
 RUN apt-get update \
-    && apt-get install -y git python3-pip curl unzip supervisor 
+    && apt-get install -y python3-pip curl unzip supervisor 
 
 RUN cd /opt/ \
     && curl https://codeload.github.com/supermasita/geoip-flask/zip/master -o master.zip \
