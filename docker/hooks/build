@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --build-arg LICENSE_KEY=$LICENSE_KEY .
+docker build --build-arg LICENSE_KEY=$LICENSE_KEY --tag "supermasita/geoip-flask" .
