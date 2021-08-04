@@ -3,13 +3,12 @@ name: Build Docker image and push to hub.docker.com
 on:
   push:
     branches: [ master ]
-
+  schedule:
+    - cron: '40 23 * * 3'  # Weekly build
+    
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: docker login
