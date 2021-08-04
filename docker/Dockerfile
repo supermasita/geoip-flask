@@ -23,7 +23,7 @@ RUN cd /opt/geoip-flask \
 
 RUN mkdir /opt/geoip-flask/GeoLite2-City/
 
-RUN curl "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${LICENSE_KEY}&suffix=tar.gz" \ 
+RUN curl "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${{ secrets.LICENSE_KEY }}&suffix=tar.gz" \ 
     -o /opt/geoip-flask/GeoLite2-City/GeoLite2-City.tar.gz 
 
 RUN cd /opt/geoip-flask/GeoLite2-City \ 
