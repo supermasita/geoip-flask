@@ -1,5 +1,4 @@
 # Python Flask GeoLite2 City service
-![](https://api.travis-ci.org/supermasita/geoip-flask.svg?branch=master)
 
 ## Running
 
