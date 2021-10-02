@@ -21,7 +21,9 @@ jobs:
       run: |
         ls -l
         cd docker
-        docker build . --file Dockerfile --build-arg LICENSE_KEY=${{ secrets.LICENSE_KEY }} --tag supermasita/geoip-flask:latest
+        echo ${{ secrets.LICENSE_KEY }} > /tmp/geoip_license_key
+        export DOCKER_BUILDKIT=1
+        docker build . --file Dockerfile --secret id=LICENSE_KEY,src=/tmp/geoip_license_key --tag supermasita/geoip-flask:latest
       
     - name: Docker Push
       run: docker push supermasita/geoip-flask
