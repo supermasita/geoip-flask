@@ -26,7 +26,7 @@ class TestGeoipFlask(unittest.TestCase):
 
     def test_app_ip_null(self):
         geoip_response = requests.get("http://127.0.0.1:8888/23.155.53.186")
-        self.assertRegex(geoip_response.text, "IP: <b>23.155.53.186</b>")
+        self.assertRegex(geoip_response.text, "<b>23.155.53.186</b>")
 
     def test_app_json_with_proxy_header(self):
         geoip_response = requests.get("http://127.0.0.1:8888/api/v1.0/ip/", headers={"X-Real-IP": "200.42.143.3"})
