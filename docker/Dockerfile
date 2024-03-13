@@ -16,7 +16,7 @@
 
 FROM ubuntu:latest
 
-ENV UPDATED "2022-03-24"
+ENV UPDATED "2024-03-13"
 
 RUN apt-get update \
     && apt-get install -y python3-pip curl unzip supervisor 
