@@ -1,6 +1,0 @@
-# Dependencies of the test files
-Faker==25.8.0
-Flask==3.0.3
-geoip2==4.8.0
-locust==1.0
-Requests==2.32.3
