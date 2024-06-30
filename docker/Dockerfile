@@ -28,6 +28,7 @@ RUN cd /opt/ \
     && rm -f master.zip
 
 RUN cd /opt/geoip-flask \
+    && python3 -m pip config set global.break-system-packages true \
     && pip3 install -r requirements.txt
 
 COPY GeoLite2-City.tar.gz /opt/geoip-flask/GeoLite2-City/
