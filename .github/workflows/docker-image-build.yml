@@ -21,7 +21,7 @@ jobs:
       run: |
         ls -l
         cd docker
-        curl "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${{ secrets.LICENSE_KEY }}&suffix=tar.gz" --output ./GeoLite2-City.tar.gz
+        curl -J -L -u ${{ secrets.LICENSE_ID }}:${{ secrets.LICENSE_KEY }} "https://download.maxmind.com/geoip/databases/GeoLite2-City/download?suffix=tar.gz" -o ./GeoLite2-City.tar.gz && tar xf GeoLite2-City.tar.gz && mv GeoLite2-City_2* GeoLite2-City
         docker build . --file Dockerfile --tag supermasita/geoip-flask:latest
       
     - name: Docker Push
